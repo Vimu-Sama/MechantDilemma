@@ -7,14 +7,18 @@ namespace Player
         [SerializeField] private PlayerView playerView;
         [SerializeField] private float playerSpeed;
         [SerializeField] private float jumpForce;
-//        [SerializeField] private 
+        [SerializeField] private int packageCarryLimit;
+
+        private Camera cam ;
         private PlayerController playerController;
         private PlayerModel playerModel;
 
         private void Awake()
         {
-            playerModel = new PlayerModel(playerSpeed, jumpForce);
-            playerController = new PlayerController(playerView, playerModel);
+            cam= GameObject.FindObjectOfType<Camera>();
+            playerModel = new PlayerModel(playerSpeed, jumpForce, packageCarryLimit);
+            playerController = new PlayerController(playerView, playerModel, cam);
+            
         }
 
     }

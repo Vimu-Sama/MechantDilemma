@@ -1,7 +1,6 @@
 using UnityEngine;
-using Events;
 using Collectible;
-using Player.UI;
+using Events;
 
 namespace Player
 {
@@ -19,6 +18,7 @@ namespace Player
             canJmp = false;
             EventService.Instance.EnableJump += SetJumpTrue;
         }
+        
 
         private void SetJumpTrue()
         {
@@ -37,15 +37,7 @@ namespace Player
             }
             if(Input.GetKeyDown(KeyCode.F))
             {
-                if(UiService.Instance.GetInventoryCount()>0)
-                {
-                    Instantiate(collectibleSpawn, transform.position, Quaternion.identity);
-                    EventService.Instance.ObjectDropped();
-                }
-                else
-                {
-                    Debug.Log("Nothing to throw!!");
-                }
+                playerController.DropPackage(collectibleSpawn);
             }
         }
 
@@ -53,6 +45,12 @@ namespace Player
         {
             playerController = temp;
         }
+
+        public void DestroyGameObject(GameObject temp)
+        {
+            Destroy(temp);
+        }
+
 
     }
 }

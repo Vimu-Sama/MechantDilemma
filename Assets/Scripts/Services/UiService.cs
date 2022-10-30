@@ -8,30 +8,15 @@ namespace Player.UI
     public class UiService : GenericSingleton<UiService>
     {
         [SerializeField] private TextMeshProUGUI inventoryText;
-        private int inventoryItemCount = 0;
 
         private void Start()
         {
-            inventoryItemCount = 0; 
-            EventService.Instance.ObjectPickedUp += IncreamentInvertoryCounter;
-            EventService.Instance.ObjectDropped += DecreamentInventoryCounter;
+            inventoryText.text = "Inventory Count: " + 0;
         }
 
-        public int GetInventoryCount()
+        public void UpdateInventoryValue(int count)
         {
-            return inventoryItemCount;
-        }
-
-        private void IncreamentInvertoryCounter()
-        {
-            inventoryItemCount++;
-            inventoryText.text = "Inventory Count: "+ inventoryItemCount.ToString();
-        }
-
-        private void DecreamentInventoryCounter()
-        {
-            inventoryItemCount--;
-            inventoryText.text= "Inventory Count: "+ inventoryItemCount.ToString();
+            inventoryText.text = "Inventory Count: " + count.ToString();
         }
 
 

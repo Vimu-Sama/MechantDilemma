@@ -27,8 +27,7 @@ namespace Collectible
         {
             if (collision.gameObject.GetComponent<PlayerView>() != null)
             {
-                EventService.Instance.ObjectPickedUp();
-                Destroy(this.gameObject);
+                EventService.Instance.ObjectPickedUp(this.gameObject);
             }
         }
     }
