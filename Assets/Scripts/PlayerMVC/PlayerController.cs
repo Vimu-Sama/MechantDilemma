@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
@@ -20,11 +18,22 @@ namespace Player
 
         public void MovePlayer(float keyInput)
         {
-            if(keyInput!=0)
+            if (keyInput != 0)
             {
-                playerView.transform.position += new Vector3(playerModel.PlayerSpeed() * keyInput,0f,0f);
+                playerView.transform.position += new Vector3(playerModel.PlayerSpeed() * keyInput, 0f, 0f);
             }
         }
+
+        public void AddPlayerJmp(bool canJmp)
+        {
+            if (canJmp)
+            {
+                playerView.GetComponent<Rigidbody2D>().
+                    AddForce(new Vector2(0f, playerModel.PlayerJumpForce()), ForceMode2D.Impulse);
+                
+            }
+        }
+
 
     }
 }

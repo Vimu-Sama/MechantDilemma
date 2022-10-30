@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
@@ -9,6 +7,7 @@ namespace Player
         [SerializeField] private PlayerView playerView;
         [SerializeField] private float playerSpeed;
         [SerializeField] private float jumpForce;
+//        [SerializeField] private 
         private PlayerController playerController;
         private PlayerModel playerModel;
 
