@@ -7,9 +7,10 @@ namespace Player
 {
     public class PlayerController
     {
-        PlayerView playerView;
-        PlayerModel playerModel;
+        private PlayerView playerView;
+        private PlayerModel playerModel;
         private int packageCount = 0;
+        private Collectibles droppedPackage;
 
         public PlayerController(PlayerView _playerView, PlayerModel _playerModel, Camera cam)
         {
@@ -17,7 +18,8 @@ namespace Player
             this.playerModel = _playerModel;
             this.playerView.SetPlayerController(this);
             this.playerModel.SetPlayerController(this);
-            cam.transform.SetParent(this.playerView.transform, false);
+            cam.transform.SetParent(this.playerView.transform, true);
+            cam.transform.localPosition = new Vector3(0f, 0f, -10f);
             EventService.Instance.ObjectPickedUp += IncreamentPackageCounter;
             EventService.Instance.ObjectDropped += DecreamentPackageCounter;
         }
@@ -62,7 +64,10 @@ namespace Player
         {
             if (packageCount > 0)
             {
-                GameObject.Instantiate(collectibles, playerView.transform.position, Quaternion.identity);
+                Vector2 packageTransform= new Vector2(playerView.transform.position.x, playerView.transform.position.y);
+                droppedPackage=  GameObject.Instantiate(collectibles,packageTransform, Quaternion.identity);
+                droppedPackage.gameObject.GetComponent<Rigidbody2D>().AddForce
+                    (new Vector2(0f,playerModel.PackageThrowForce()), ForceMode2D.Impulse);
                 EventService.Instance.ObjectDropped();
             }
             else

@@ -23,12 +23,16 @@ namespace Collectible
             this.GetComponent<BoxCollider2D>().enabled = true;
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.GetComponent<PlayerView>() != null)
             {
                 EventService.Instance.ObjectPickedUp(this.gameObject);
             }
+            //else if(collision.gameObject.GetComponent<objectSubmit>()!-=null)
+            //{
+            //    EventService.Instance.
+            //}
         }
     }
 }

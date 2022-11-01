@@ -7,12 +7,19 @@ namespace Player
         PlayerController playerController;
         float playerSpeed;
         float jumpForce;
+        float packageThrowForce;
         int packageCarryLimit;
-        public PlayerModel(float _playerSpeed, float _playerJumpForce, int _packageCarryLimit)
+        public PlayerModel(float _packageThrowForce, float _playerSpeed, float _playerJumpForce, int _packageCarryLimit)
         {
+            packageThrowForce = _packageThrowForce;
             playerSpeed = _playerSpeed;
             jumpForce = _playerJumpForce;
             packageCarryLimit = _packageCarryLimit;
+        }
+
+        public float PackageThrowForce()
+        {
+            return packageThrowForce;
         }
 
         public float PackageCarryLimit()
