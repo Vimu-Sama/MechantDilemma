@@ -7,32 +7,30 @@ namespace Collectible
 {
     public class Collectibles : MonoBehaviour
     {
-        [SerializeField] private float timeBeforeTriggerActivate= 0f;
+        [SerializeField] private float timeBeforeTriggerActivate= 0.5f;
+        BoxCollider2D boxCollider2D;
         WaitForSeconds waitForSeconds;
 
         private void Start()
         {
             waitForSeconds = new WaitForSeconds(timeBeforeTriggerActivate);
-            this.GetComponent<BoxCollider2D>().enabled = false;
+            boxCollider2D= GetComponent<BoxCollider2D>() ;
+            boxCollider2D.enabled= false;
             StartCoroutine(ActivateSoon());
         }
 
         IEnumerator ActivateSoon()
         {
             yield return waitForSeconds;
-            this.GetComponent<BoxCollider2D>().enabled = true;
+            boxCollider2D.enabled = true;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.GetComponent<PlayerView>() != null)
             {
-                EventService.Instance.ObjectPickedUp(this.gameObject);
+                EventService.Instance.ObjectPickedUp(gameObject);
             }
-            //else if(collision.gameObject.GetComponent<objectSubmit>()!-=null)
-            //{
-            //    EventService.Instance.
-            //}
         }
     }
 }

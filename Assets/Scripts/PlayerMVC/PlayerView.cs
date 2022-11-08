@@ -9,20 +9,20 @@ namespace Player
         [SerializeField] private Collectibles collectibleSpawn;
         private PlayerController playerController;
         float horizontalSpeed;
-        private bool canJmp; 
+        private bool canJump; 
 
 
         private void Start()
         {
             horizontalSpeed = 0f;
-            canJmp = false;
+            canJump = false;
             EventService.Instance.EnableJump += SetJumpTrue;
         }
         
 
         private void SetJumpTrue()
         {
-            canJmp = true;
+            canJump = true;
         }
 
 
@@ -32,8 +32,8 @@ namespace Player
             playerController.MovePlayer(horizontalSpeed * Time.deltaTime);
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                playerController.AddPlayerJmp(canJmp);
-                canJmp = false;
+                playerController.AddPlayerJump(canJump);
+                canJump = false;
             }
             if(Input.GetKeyDown(KeyCode.F))
             {
@@ -41,14 +41,14 @@ namespace Player
             }
         }
 
-        public void SetPlayerController(PlayerController temp)
+        public void SetPlayerController(PlayerController _temp)
         {
-            playerController = temp;
+            playerController = _temp;
         }
 
-        public void DestroyGameObject(GameObject temp)
+        public void DestroyGameObject(GameObject _temp)
         {
-            Destroy(temp);
+            Destroy(_temp);
         }
 
 

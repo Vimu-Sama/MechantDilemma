@@ -14,12 +14,12 @@ namespace Player
         private PlayerController playerController;
         private PlayerModel playerModel;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             cam= GameObject.FindObjectOfType<Camera>(); 
             playerModel = new PlayerModel(packageThrowForce,playerSpeed, jumpForce, packageCarryLimit);
-            playerController = new PlayerController(playerView, playerModel, cam);
-            
+            playerController = new PlayerController(playerView, playerModel, cam);            
         }
 
     }

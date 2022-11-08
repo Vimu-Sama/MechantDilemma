@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GenericSingleton<T> : MonoBehaviour where T: GenericSingleton<T>
@@ -13,7 +11,7 @@ public class GenericSingleton<T> : MonoBehaviour where T: GenericSingleton<T>
         }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if (instance == null)
             instance = this as T;

@@ -3,7 +3,7 @@ using Events;
 
 namespace Player
 {
-    public class JmpTriggerCheck : GenericSingleton<JmpTriggerCheck>
+    public class JumpTriggerCheck: MonoBehaviour
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {

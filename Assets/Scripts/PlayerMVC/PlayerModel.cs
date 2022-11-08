@@ -4,11 +4,11 @@ namespace Player
 {
     public class PlayerModel
     {
-        PlayerController playerController;
-        float playerSpeed;
-        float jumpForce;
-        float packageThrowForce;
-        int packageCarryLimit;
+        private PlayerController playerController;
+        private float playerSpeed;
+        private float jumpForce;
+        private float packageThrowForce;
+        private int packageCarryLimit;
         public PlayerModel(float _packageThrowForce, float _playerSpeed, float _playerJumpForce, int _packageCarryLimit)
         {
             packageThrowForce = _packageThrowForce;
@@ -36,9 +36,9 @@ namespace Player
         {
             return jumpForce;
         }
-        public void SetPlayerController(PlayerController temp)
+        public void SetPlayerController(PlayerController _temp)
         {
-            this.playerController = temp;
+            playerController = _temp;
         }
 
     }
