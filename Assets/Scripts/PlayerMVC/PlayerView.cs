@@ -17,6 +17,7 @@ namespace Player
             horizontalSpeed = 0f;
             canJump = false;
             EventService.Instance.EnableJump += SetJumpTrue;
+            EventService.Instance.PlayerDied += PlayerDied;
         }
         
 
@@ -24,8 +25,6 @@ namespace Player
         {
             canJump = true;
         }
-
-
         private void Update()
         {
             horizontalSpeed = Input.GetAxisRaw("Horizontal");
@@ -37,8 +36,14 @@ namespace Player
             }
             if(Input.GetKeyDown(KeyCode.F))
             {
-                playerController.DropPackage(collectibleSpawn);
+                playerController.DropPackage();
             }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == 8)
+                EventService.Instance.PlayerDied?.Invoke(); 
         }
 
         public void SetPlayerController(PlayerController _temp)
@@ -46,11 +51,10 @@ namespace Player
             playerController = _temp;
         }
 
-        public void DestroyGameObject(GameObject _temp)
+        public void PlayerDied()
         {
-            Destroy(_temp);
+            this.enabled = false;
         }
-
 
     }
 }

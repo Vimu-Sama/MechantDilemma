@@ -2,6 +2,7 @@ using UnityEngine;
 using Player.UI;
 using Collectible;
 using Events;
+using Player.PackageManager;
 
 namespace Player
 {
@@ -20,20 +21,20 @@ namespace Player
             playerModel.SetPlayerController(this);
             _cam.transform.SetParent(playerView.transform, true);
             _cam.transform.localPosition = new Vector3(0f, 0f, -10f);
-            EventService.Instance.ObjectPickedUp += IncreamentPackageCounter;
-            EventService.Instance.ObjectDropped += DecreamentPackageCounter;
+            EventService.Instance.PackagePickedUp += IncreasePackageCounter;
+            EventService.Instance.PackageDropped += DecreasePackageCounter;
         }
 
 
-        private void IncreamentPackageCounter(GameObject _collectibleGameObject)
+        private void IncreasePackageCounter(Collectibles _collectibleGameObject)
         {
             if (packageCount >= playerModel.PackageCarryLimit())
                 return;
             packageCount++;
-            playerView.DestroyGameObject(_collectibleGameObject);
+            PackageManager.PackageManager.Instance.Enqueue(_collectibleGameObject);
         }
 
-        private void DecreamentPackageCounter()
+        private void DecreasePackageCounter()
         {
             packageCount--;
         }
@@ -55,15 +56,16 @@ namespace Player
             }
         }
 
-        public void DropPackage(Collectibles collectibles)
+        public void DropPackage()
         {
             if (packageCount > 0)
             {
-                Vector2 packageTransform= new Vector2(playerView.transform.position.x, playerView.transform.position.y);
-                droppedPackage=  GameObject.Instantiate(collectibles,packageTransform, Quaternion.identity);
+                Vector2 packageTransform = new Vector2(playerView.transform.position.x, playerView.transform.position.y + 1f);
+                droppedPackage = PackageManager.PackageManager.Instance.Dequeue();
+                droppedPackage.transform.position= packageTransform;
                 droppedPackage.gameObject.GetComponent<Rigidbody2D>().AddForce
-                    (new Vector2(0f,playerModel.PackageThrowForce()), ForceMode2D.Impulse); //using playerModel, thus, MVC can allow interaction between Model->Controller->View
-                EventService.Instance.ObjectDropped();
+                    (new Vector2(0f, playerModel.PackageThrowForce()), ForceMode2D.Impulse); 
+                EventService.Instance.PackageDropped();
             }
             else
             {

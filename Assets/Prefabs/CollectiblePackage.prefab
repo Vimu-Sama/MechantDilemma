@@ -145,3 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBeforeTriggerActivate: 0.5
+  timeBeforeCollectibleDestroy: 2
+  packageParticleEffect: {fileID: 3219756029084289815, guid: 001884b02b04b9c40898ac1b080f6607, type: 3}

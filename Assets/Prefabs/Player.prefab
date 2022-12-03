@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5278218378527438995}
   - component: {fileID: 3094988187613704246}
-  - component: {fileID: 4385305134839952950}
+  - component: {fileID: 617318690201380024}
   m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -58,7 +58,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3137044, y: 0.11322713}
   m_EdgeRadius: 0
---- !u!114 &4385305134839952950
+--- !u!114 &617318690201380024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 9109796154943956206}
   - component: {fileID: 9109796154943956207}
   - component: {fileID: 7205978226483264474}
+  - component: {fileID: 5668750044736619582}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -216,3 +217,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectibleSpawn: {fileID: -4863566879706406272, guid: 2d15fdca0c0e77247a7b197c4db8565f, type: 3}
+--- !u!114 &5668750044736619582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9109796154943956200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba0ecf4b394db42ab154a04510edc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

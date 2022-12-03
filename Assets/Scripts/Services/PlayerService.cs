@@ -9,17 +9,20 @@ namespace Player
         [SerializeField] private float jumpForce;
         [SerializeField] private float packageThrowForce;
         [SerializeField] private int packageCarryLimit;
-
-        private Camera cam ;
+        [SerializeField] private Camera cam;
         private PlayerController playerController;
         private PlayerModel playerModel;
 
         protected override void Awake()
         {
             base.Awake();
-            cam= GameObject.FindObjectOfType<Camera>(); 
-            playerModel = new PlayerModel(packageThrowForce,playerSpeed, jumpForce, packageCarryLimit);
-            playerController = new PlayerController(playerView, playerModel, cam);            
+            playerModel = new PlayerModel(packageThrowForce, playerSpeed, jumpForce, packageCarryLimit);
+            playerController = new PlayerController(playerView, playerModel, cam);
+        }
+
+        public int PackageCarryLimit
+        {
+            get { return packageCarryLimit; }
         }
 
     }
