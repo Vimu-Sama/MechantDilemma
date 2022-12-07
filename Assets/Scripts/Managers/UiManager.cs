@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using Events;
 using Collectible;
@@ -61,7 +60,8 @@ namespace Player.UI
 
         private void LevelOver()
         {
-            SetGameOverUIActive("Level Finished");
+            SetGameOverUIActive("Level Finished!!");
+            Debug.Log("sda");
         }
 
         private void SetGameOverUIActive(string s)

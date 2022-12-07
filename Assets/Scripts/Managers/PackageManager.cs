@@ -32,6 +32,7 @@ namespace Player.PackageManager
         private void PackageSubmitted()
         {
             numOfPackagesInScene-- ;
+            Debug.Log(numOfPackagesInScene);
             if (numOfPackagesInScene == 0)
                 EventService.Instance.LevelCompleted?.Invoke();
         }
